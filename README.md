@@ -2,17 +2,18 @@
 
 ## Overview
 
-This project refactors the legacy task scheduling system into a modular and extensible architecture.
+Refactored the legacy task scheduling script into a modular OOP-based design.
 
-### Improvements
+## Improvements
 
-* Converted procedural code into OOP design
-* Added user quota management
-* Added task data model
-* Added scheduler component
-* Added task executor component
-* Added logging support
-* Added Strategy Pattern for task actions
+* User quota management
+* Task data model using dataclass
+* Task executor abstraction
+* Scheduler component
+* Logging support
+* Strategy Pattern for task actions
+* Multiple tasks per user
+* Configurable task parameters
 
 ## Architecture
 
@@ -24,40 +25,14 @@ TaskExecutor
     |
     +--> UserManager
     |
-    +--> Action Strategies
+    +--> StrategyFactory
+            |
+            +--> SyncStrategy
+            +--> BackupStrategy
+            +--> DeleteStrategy
 ```
 
-## Components
-
-### UserManager
-
-Responsible for:
-
-* User lookup
-* Quota validation
-* Execution tracking
-
-### Task
-
-Represents a scheduled task.
-
-### Scheduler
-
-Finds tasks scheduled for the current time.
-
-### TaskExecutor
-
-Executes tasks and updates quota usage.
-
-### Action Strategies
-
-Current supported actions:
-
-* sync
-* backup
-* delete
-
-## Running
+## Run
 
 ```bash
 python main.py
@@ -66,6 +41,6 @@ python main.py
 ## Future Improvements
 
 * Async execution
-* Persistent storage (PostgreSQL)
-* Distributed scheduler
-* Queue-based workers
+* Database persistence
+* Message queue integration
+* Distributed scheduling
